@@ -40,7 +40,7 @@ export const Alert = ({
 
   useEffect(() => {
     return () => clearTimeout(timeout);
-  }, []);
+  }, [timeout]);
 
   return (
     <>
