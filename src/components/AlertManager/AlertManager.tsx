@@ -16,6 +16,7 @@ import { useAlertReducer } from "../../context/Alert/useAlertReducer";
 // static data
 import { exampleButtons } from './example-buttons';
 import { formInputs } from './form-inputs';
+import { AlertContainer } from "../AlertContainer";
 
 const defaultAlert: AlertInterface = {
   alertType: "success",
@@ -53,6 +54,7 @@ export const AlertManager = () => {
         alignItems: 'center'
       }}
     >
+      <AlertContainer />
       <FormControl>
         {formInputs.map(({ name, label, type, options }, index) => (
           type === "select" ? (

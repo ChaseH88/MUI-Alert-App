@@ -3,8 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 // Components
-import { AlertContainer } from './components/AlertContainer';
-import { AlertManager } from './components/AlertManager/AlertManager';
+import { AlertManager } from './components/AlertManager';
 
 export const App = () => (
   <Box
@@ -20,7 +19,6 @@ export const App = () => (
       Alert App
     </Typography>
     <AlertManager />
-    <AlertContainer />
   </Box>
 );
 

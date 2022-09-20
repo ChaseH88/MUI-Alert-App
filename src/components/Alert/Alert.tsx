@@ -50,6 +50,7 @@ export const Alert = ({
           <Link
             href={link}
             target="_blank"
+            id={id}
           >
             {children}
           </Link>
@@ -60,6 +61,7 @@ export const Alert = ({
           variant="filled"
           severity={alertType}
           onClose={() => hideAlert(id!)}
+          {...(!link?.length! && { id })}
         >
           <AlertTitle>
             {alertTitle || `${alertType.charAt(0).toUpperCase()}${alertType.slice(1)}`}
