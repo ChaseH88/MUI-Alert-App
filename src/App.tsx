@@ -1,62 +1,26 @@
-// Components
-import Button from '@mui/material/Button';
+// Mui
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
-// Styles
-import './App.css';
+// Components
 import { AlertContainer } from './components/AlertContainer';
 import { AlertManager } from './components/AlertManager/AlertManager';
 
-// Hooks
-import { useAlertReducer } from './context/Alert/useAlertReducer';
+export const App = () => (
+  <Box
+    sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100vh',
+    }}
+  >
+    <Typography variant="h1" component="h1">
+      Alert App
+    </Typography>
+    <AlertManager />
+    <AlertContainer />
+  </Box>
+);
 
-
-const buttons = [
-  {
-    text: 'Success',
-    alertType: 'success',
-  },
-  {
-    text: 'Error',
-    alertType: 'error',
-  },
-  {
-    text: 'Warning',
-    alertType: 'warning',
-  },
-  {
-    text: 'Info',
-    alertType: 'info',
-  }
-];
-
-
-function App() {
-
-  const { showAlert, hideAlert, alerts } = useAlertReducer();
-
-  return (
-    <div id="app">
-      <div className="container">
-        <h1>
-          Alert App
-        </h1>
-        {buttons.map((button, index) => (
-          <Button
-            key={index}
-            variant="contained"
-            onClick={() => showAlert({
-              alertType: button.alertType as any, // TODO: add type
-              text: Math.random().toString(36).substring(7)
-            })}
-          >
-            {button.text}
-          </Button>
-        ))}
-        <AlertManager />
-        <AlertContainer />
-      </div>
-    </div>
-  );
-}
-
-export default App;
