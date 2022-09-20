@@ -2,7 +2,6 @@ import { useState } from "react"
 
 // Material-UI
 import FormControl from '@mui/material/FormControl';
-import { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
 
@@ -17,7 +16,7 @@ const defaultAlert: AlertInterface = {
   alertType: "success",
   text: "",
   link: "",
-  timeLimit: 10000,
+  timeLimit: 10,
 }
 
 const formInputs = [
@@ -55,7 +54,7 @@ const formInputs = [
     type: "text",
   },
   {
-    label: "Time Limit",
+    label: "Time Limit (seconds)",
     name: "timeLimit",
     type: "number",
   }
@@ -75,8 +74,10 @@ export const AlertManager = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log("handleSubmit", alert);
-    showAlert(alert);
+    showAlert({
+      ...alert,
+      timeLimit: alert.timeLimit! * 1000,
+    });
     setAlert(defaultAlert);
   }
 
