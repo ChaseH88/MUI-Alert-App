@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 
 // Styles
 import './App.css';
-import { Alert } from './components/Alert';
+import { AlertContainer } from './components/AlertContainer';
 
 // Hooks
 import { useAlertReducer } from './context/Alert/useAlertReducer';
@@ -51,15 +51,7 @@ function App() {
             {button.text}
           </Button>
         ))}
-        <div className="alerts">
-          {alerts?.length ? (
-            alerts.map((alert) => <Alert key={alert.id} {...alert} />)
-          ) : (
-            <p>
-              No alerts
-            </p>
-          )}
-        </div>
+        <AlertContainer />
       </div>
     </div>
   );
