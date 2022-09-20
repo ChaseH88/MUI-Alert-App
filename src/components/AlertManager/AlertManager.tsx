@@ -13,6 +13,10 @@ import { TextField, Select, Button } from './styles';
 import { AlertInterface } from "../../context/Alert/context"
 import { useAlertReducer } from "../../context/Alert/useAlertReducer";
 
+// static data
+import { exampleButtons } from './example-buttons';
+import { formInputs } from './form-inputs';
+
 const defaultAlert: AlertInterface = {
   alertType: "success",
   alertTitle: "",
@@ -20,99 +24,6 @@ const defaultAlert: AlertInterface = {
   link: "",
   timeLimit: 10,
 }
-
-const formInputs = [
-  {
-    label: "Alert Type",
-    name: "alertType",
-    type: "select",
-    options: [
-      {
-        value: "success",
-        label: "Success",
-      },
-      {
-        value: "error",
-        label: "Error",
-      },
-      {
-        value: "warning",
-        label: "Warning",
-      },
-      {
-        value: "info",
-        label: "Info",
-      },
-    ],
-  },
-  {
-    label: "Alert Title",
-    name: "alertTitle",
-    type: "text",
-  },
-  {
-    label: "Text",
-    name: "text",
-    type: "text",
-  },
-  {
-    label: "Link",
-    name: "link",
-    type: "text",
-  },
-  {
-    label: "Time Limit (seconds)",
-    name: "timeLimit",
-    type: "number",
-  }
-];
-
-const exampleButtons: { label: string, color: string, alert: AlertInterface }[] = [
-  {
-    label: "Success",
-    color: "success",
-    alert: {
-      alertType: "success",
-      alertTitle: "Success",
-      text: "This is a success alert",
-      link: "",
-      timeLimit: 10 * 1000,
-    },
-  },
-  {
-    label: "Error",
-    color: "error",
-    alert: {
-      alertType: "error",
-      alertTitle: "Error",
-      text: "This is an error alert",
-      link: "",
-      timeLimit: 10 * 1000,
-    },
-  },
-  {
-    label: "Warning",
-    color: "warning",
-    alert: {
-      alertType: "warning",
-      alertTitle: "Warning",
-      text: "This is a warning alert",
-      link: "",
-      timeLimit: 10 * 1000,
-    },
-  },
-  {
-    label: "Info",
-    color: "info",
-    alert: {
-      alertType: "info",
-      alertTitle: "Info",
-      text: "This is an info alert",
-      link: "",
-      timeLimit: 10 * 1000,
-    },
-  }
-]
 
 export const AlertManager = () => {
 
@@ -132,7 +43,6 @@ export const AlertManager = () => {
       ...alert,
       timeLimit: alert.timeLimit! * 1000,
     });
-    setAlert(defaultAlert);
   }
 
   return (
@@ -144,16 +54,15 @@ export const AlertManager = () => {
       }}
     >
       <FormControl>
-        {formInputs.map((input, index) => (
-          input.type === "select" ? (
+        {formInputs.map(({ name, label, type, options }, index) => (
+          type === "select" ? (
             <Select
-              name={input.name}
+              name={name}
               key={index}
-              label={input.label}
-              value={alert[input.name! as keyof AlertInterface] as string}
+              value={alert[name! as keyof AlertInterface] as string}
               onChange={handleChange as any}
             >
-              {input.options?.map((option, index) => (
+              {options?.map((option, index) => (
                 <MenuItem
                   key={index}
                   value={option.value}
@@ -164,21 +73,39 @@ export const AlertManager = () => {
             </Select>
           ) : (
             <TextField
-              name={input.name}
+              name={name}
               key={index}
-              label={input.label}
-              value={alert[input.name! as keyof AlertInterface] as number | string}
+              label={label}
+              value={alert[name! as keyof AlertInterface] as number | string}
               onChange={handleChange as React.ChangeEventHandler<HTMLInputElement>}
-              type={input.type}
+              type={type}
             />
           )
         ))}
-        <MuiButton
-          variant="contained"
-          onClick={handleSubmit}
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
         >
-          Show Alert
-        </MuiButton>
+          <MuiButton
+            variant="contained"
+            onClick={handleSubmit}
+            sx={{
+              flex: 1,
+              margin: '0 .5em 0 0'
+            }}
+          >
+            Show Alert
+          </MuiButton>
+          <MuiButton
+            variant="contained"
+            onClick={() => setAlert(defaultAlert)}
+          >
+            Reset
+          </MuiButton>
+        </Box>
       </FormControl>
       <Box
         sx={{
