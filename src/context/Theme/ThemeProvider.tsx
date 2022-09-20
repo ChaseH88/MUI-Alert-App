@@ -12,8 +12,8 @@ const GlobalStyle = createGlobalStyle`
 
   #alerts {
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 1vh;
+    right: 0.5vw;
     bottom: auto;
     left: auto;
   }

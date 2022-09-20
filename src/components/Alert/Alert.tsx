@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 
 // Material-UI
-import MuiAlert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import Typography from '@mui/material/Typography';
+
+// Styles
+import { AlertStyled } from './styles';
 
 // Alert Context
 import { AlertInterface } from '../../context/Alert/context';
@@ -15,13 +18,13 @@ export const Alert = (props: AlertInterface) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       hideAlert(props.id!);
-    }, 300000);
+    }, 3000);
 
     return () => clearTimeout(timeout);
   }, [hideAlert, props.id]);
 
   return (
-    <MuiAlert
+    <AlertStyled
       elevation={6}
       variant="filled"
       severity={props.alertType}
@@ -30,7 +33,9 @@ export const Alert = (props: AlertInterface) => {
       <AlertTitle>
         {props.alertType}
       </AlertTitle>
-      {props.text}
-    </MuiAlert>
+      <Typography variant="body2">
+        {props.text}
+      </Typography>
+    </AlertStyled>
   )
 }
