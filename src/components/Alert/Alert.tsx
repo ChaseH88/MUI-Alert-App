@@ -15,7 +15,7 @@ export const Alert = (props: AlertInterface) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       hideAlert(props.id!);
-    }, 3000);
+    }, 300000);
 
     return () => clearTimeout(timeout);
   }, [hideAlert, props.id]);

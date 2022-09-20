@@ -1,12 +1,27 @@
-import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import { ThemeProvider as SCThemeProvider, createGlobalStyle } from 'styled-components';
 import { theme } from './theme';
 
 interface ThemeProviderProps {
   children: React.ReactNode;
 }
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: ${({ theme }) => theme.palette.background.default};
+  }
+
+  #alerts {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: auto;
+  }
+`;
+
 export const ThemeProvider = ({ children }: ThemeProviderProps) => (
-  <MuiThemeProvider theme={theme}>
+  <SCThemeProvider theme={theme}>
     {children}
-  </MuiThemeProvider>
+    <GlobalStyle />
+  </SCThemeProvider>
 )
