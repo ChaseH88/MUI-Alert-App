@@ -16,9 +16,8 @@ function App() {
         </h1>
         <button
           onClick={() => showAlert({
-            id: "1",
             alertType: "success",
-            text: "This is a success alert"
+            text: Math.random().toString(36).substring(2, 9)
           })}
         >
           Show Alert
