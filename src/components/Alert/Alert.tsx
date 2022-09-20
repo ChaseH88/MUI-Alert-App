@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 // Material-UI
 import AlertTitle from '@mui/material/AlertTitle';
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 
 // Styles
 import { AlertStyled } from './styles';
@@ -11,31 +12,62 @@ import { AlertStyled } from './styles';
 import { AlertInterface } from '../../context/Alert/context';
 import { useAlertReducer } from '../../context/Alert/useAlertReducer';
 
-export const Alert = (props: AlertInterface) => {
+const ConditionalAlert = ({
+  condition,
+  wrapper,
+  children,
+}: {
+  condition: boolean;
+  wrapper: (children: React.ReactNode) => React.ReactNode;
+  children: React.ReactNode;
+}) => (
+  condition ?
+    wrapper(children) as React.ReactElement :
+    <>{children}</>
+)
+
+export const Alert = ({
+  id,
+  timeLimit,
+  alertType,
+  text,
+  link
+}: AlertInterface) => {
 
   const { hideAlert } = useAlertReducer();
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      hideAlert(props.id!);
-    }, 3000);
-
+    const timeout = setTimeout(() => hideAlert(id!), timeLimit);
     return () => clearTimeout(timeout);
-  }, [hideAlert, props.id]);
+  }, []);
 
   return (
-    <AlertStyled
-      elevation={6}
-      variant="filled"
-      severity={props.alertType}
-      onClose={() => hideAlert(props.id!)}
-    >
-      <AlertTitle>
-        {props.alertType}
-      </AlertTitle>
-      <Typography variant="body2">
-        {props.text}
-      </Typography>
-    </AlertStyled>
+    <>
+      <ConditionalAlert
+        condition={!!link!.length!}
+        wrapper={(children) => (
+          <Link
+            href={link}
+            target="_blank"
+          >
+            {children}
+          </Link>
+        )}
+      >
+        <AlertStyled
+          elevation={6}
+          variant="filled"
+          severity={alertType}
+          onClose={() => hideAlert(id!)}
+        >
+          <AlertTitle>
+            {alertType}
+          </AlertTitle>
+          <Typography variant="body2">
+            {text || 'Example Alert'}
+          </Typography>
+        </AlertStyled>
+      </ConditionalAlert>
+    </>
   )
 }
