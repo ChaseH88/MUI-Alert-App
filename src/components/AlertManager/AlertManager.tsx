@@ -14,6 +14,7 @@ import { useAlertReducer } from "../../context/Alert/useAlertReducer";
 
 const defaultAlert: AlertInterface = {
   alertType: "success",
+  alertTitle: "",
   text: "",
   link: "",
   timeLimit: 10,
@@ -42,6 +43,11 @@ const formInputs = [
         label: "Info",
       },
     ],
+  },
+  {
+    label: "Alert Title",
+    name: "alertTitle",
+    type: "text",
   },
   {
     label: "Text",

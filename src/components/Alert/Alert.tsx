@@ -30,6 +30,7 @@ export const Alert = ({
   id,
   timeLimit,
   alertType,
+  alertTitle,
   text,
   link
 }: AlertInterface) => {
@@ -61,7 +62,7 @@ export const Alert = ({
           onClose={() => hideAlert(id!)}
         >
           <AlertTitle>
-            {alertType}
+            {alertTitle || `${alertType.charAt(0).toUpperCase()}${alertType.slice(1)}`}
           </AlertTitle>
           <Typography variant="body2">
             {text || 'Example Alert'}
