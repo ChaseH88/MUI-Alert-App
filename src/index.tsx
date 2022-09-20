@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// Alert Context
-import { AlertProvider } from './context';
+// Context Providers
+import { AlertProvider } from './context/Alert';
+import { ThemeProvider } from './context/Theme';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <AlertProvider>
-      <App />
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
     </AlertProvider>
   </React.StrictMode>
 );
