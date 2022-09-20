@@ -17,5 +17,5 @@ export const Select = styled(MuiSelect)`
 `;
 
 export const Button = styled(MuiButton)`
-  ${sharedStyles};
+  width: 12.25vw;
 `;

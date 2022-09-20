@@ -45,7 +45,7 @@ export const Alert = ({
   return (
     <>
       <ConditionalAlert
-        condition={!!link!.length!}
+        condition={!!link?.length!}
         wrapper={(children) => (
           <Link
             href={link}

@@ -4,6 +4,7 @@ import { useState } from "react"
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
+import MuiButton, { ButtonProps } from '@mui/material/Button';
 
 // Styles
 import { TextField, Select, Button } from './styles';
@@ -66,6 +67,53 @@ const formInputs = [
   }
 ];
 
+const exampleButtons: { label: string, color: string, alert: AlertInterface }[] = [
+  {
+    label: "Success",
+    color: "success",
+    alert: {
+      alertType: "success",
+      alertTitle: "Success",
+      text: "This is a success alert",
+      link: "",
+      timeLimit: 10 * 1000,
+    },
+  },
+  {
+    label: "Error",
+    color: "error",
+    alert: {
+      alertType: "error",
+      alertTitle: "Error",
+      text: "This is an error alert",
+      link: "",
+      timeLimit: 10 * 1000,
+    },
+  },
+  {
+    label: "Warning",
+    color: "warning",
+    alert: {
+      alertType: "warning",
+      alertTitle: "Warning",
+      text: "This is a warning alert",
+      link: "",
+      timeLimit: 10 * 1000,
+    },
+  },
+  {
+    label: "Info",
+    color: "info",
+    alert: {
+      alertType: "info",
+      alertTitle: "Info",
+      text: "This is an info alert",
+      link: "",
+      timeLimit: 10 * 1000,
+    },
+  }
+]
+
 export const AlertManager = () => {
 
   const { showAlert } = useAlertReducer();
@@ -125,13 +173,36 @@ export const AlertManager = () => {
             />
           )
         ))}
-        <Button
+        <MuiButton
           variant="contained"
           onClick={handleSubmit}
         >
           Show Alert
-        </Button>
+        </MuiButton>
       </FormControl>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 2fr)',
+          gridGap: 10,
+          marginTop: 5,
+          maxWidth: 500,
+          margin: '2em auto 0',
+        }}
+      >
+        {exampleButtons.map(({ color, alert, label }, index) => (
+          <Button
+            key={`${color}-${index}`}
+            variant="contained"
+            color={color as ButtonProps["color"]}
+            onClick={() => {
+              showAlert(alert)
+            }}
+          >
+            {label}
+          </Button>
+        ))}
+      </Box>
     </Box>
   )
 }
