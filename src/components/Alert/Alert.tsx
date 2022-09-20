@@ -63,9 +63,11 @@ export const Alert = ({
           onClose={() => hideAlert(id!)}
           {...(!link?.length! && { id })}
         >
-          <AlertTitle>
-            {alertTitle || `${alertType.charAt(0).toUpperCase()}${alertType.slice(1)}`}
-          </AlertTitle>
+          {alertTitle && (
+            <AlertTitle>
+              {alertTitle}
+            </AlertTitle>
+          )}
           <Typography variant="body2">
             {text || 'Example Alert'}
           </Typography>

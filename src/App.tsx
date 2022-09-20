@@ -15,7 +15,11 @@ export const App = () => (
       height: '100vh',
     }}
   >
-    <Typography variant="h1" component="h1">
+    <Typography
+      variant="h1"
+      component="h1"
+      sx={{ margin: '0 0 .15em' }}
+    >
       Alert App
     </Typography>
     <AlertManager />
