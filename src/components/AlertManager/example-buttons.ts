@@ -1,4 +1,4 @@
-import { AlertInterface } from "../../context/Alert/context"
+import { AlertInterface } from "@types";
 
 export const exampleButtons: { label: string, color: string, alert: AlertInterface }[] = [
   {

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { AlertInterface } from "@types"
 
 // Material-UI
 import FormControl from '@mui/material/FormControl';
@@ -10,7 +11,6 @@ import MuiButton, { ButtonProps } from '@mui/material/Button';
 import { TextField, Select, Button } from './styles';
 
 // Context
-import { AlertInterface } from "../../context/Alert/context"
 import { useAlertReducer } from "../../context/Alert/useAlertReducer";
 
 // static data

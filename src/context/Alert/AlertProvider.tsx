@@ -1,6 +1,8 @@
+import { AlertInterface } from "@types";
+
 // Context
 import { useReducer } from "react";
-import { AlertContext, AlertInterface } from "./context";
+import { AlertContext } from "./context";
 
 export interface AlertProviderProps {
   children: React.ReactNode;

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { AlertInterface } from '@types';
 
 // Material-UI
 import AlertTitle from '@mui/material/AlertTitle';
@@ -9,7 +10,6 @@ import Link from '@mui/material/Link';
 import { AlertStyled } from './styles';
 
 // Alert Context
-import { AlertInterface } from '../../context/Alert/context';
 import { useAlertReducer } from '../../context/Alert/useAlertReducer';
 
 const ConditionalAlert = ({
@@ -36,9 +36,9 @@ export const Alert = ({
 }: AlertInterface) => {
 
   const { hideAlert } = useAlertReducer();
+  const timeout = setTimeout(() => hideAlert(id!), timeLimit);
 
   useEffect(() => {
-    const timeout = setTimeout(() => hideAlert(id!), timeLimit);
     return () => clearTimeout(timeout);
   }, []);
 

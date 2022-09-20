@@ -1,13 +1,5 @@
 import { createContext } from "react";
-
-export interface AlertInterface {
-  text: string
-  alertTitle: string
-  alertType: 'error' | 'warning' | 'info' | 'success'
-  timeLimit?: number
-  link?: string
-  id?: string
-}
+import { AlertInterface } from '@types'
 
 export interface AlertContextProps {
   alerts: AlertInterface[]
