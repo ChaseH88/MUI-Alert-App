@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 // Styles
 import './App.css';
 import { AlertContainer } from './components/AlertContainer';
+import { AlertManager } from './components/AlertManager/AlertManager';
 
 // Hooks
 import { useAlertReducer } from './context/Alert/useAlertReducer';
@@ -51,6 +52,7 @@ function App() {
             {button.text}
           </Button>
         ))}
+        <AlertManager />
         <AlertContainer />
       </div>
     </div>

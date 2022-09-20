@@ -37,6 +37,7 @@ export const AlertProvider = ({ children }: AlertProviderProps) => {
   const [state, dispatch] = useReducer(alertReducer, initialAlertState);
 
   const showAlert = (alert: AlertInterface) => {
+    console.log("showAlert", alert);
     if (!alert.id) {
       alert.id = Math.random().toString(36).substring(2, 9);
     }
