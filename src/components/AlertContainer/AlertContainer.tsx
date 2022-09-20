@@ -1,3 +1,5 @@
+import { createPortal } from 'react-dom';
+
 // Components
 import { Alert } from '../../components/Alert';
 import Collapse from '@mui/material/Collapse';
@@ -12,15 +14,18 @@ export const AlertContainer = () => {
   const { alerts } = useAlertReducer();
 
   return (
-    <div id="alerts">
-      <TransitionGroup>
-        {alerts.map((item) => (
-          <Collapse key={item.id!}>
-            <Alert {...item} />
-          </Collapse>
-        ))}
-      </TransitionGroup>
-    </div>
+    <>
+      {createPortal(
+        <TransitionGroup>
+          {alerts.map((item) => (
+            <Collapse key={item.id!}>
+              <Alert {...item} />
+            </Collapse>
+          ))}
+        </TransitionGroup>,
+        document.querySelector('#alerts')!
+      )}
+    </>
   );
 }
 
